@@ -6,11 +6,13 @@ Cette application permet la création de note structuré en `node`. Ces `node` c
 
 Pour le moment, cette application n'affiche que le contenu de base d'une `React-Native app`. J'ai aussi ajouté une `Section` 'test' pour faire un test.
 
-# Quick test
+# Run TT
 
 ``` shell
+# Clone the repository
 git clone https://github.com/alikadev/A30_project.git
-cd A30_project/a30-proj
+# Run the app
+cd A30_project/TT
 npx react-native run-ios
-i
+# On the new terminal, press `i`
 ```
