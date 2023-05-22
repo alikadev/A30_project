@@ -19,9 +19,6 @@ struct IdentifiablePlace: Identifiable {
 	}
 }
 
-extension Map {
-}
-
 struct TTView: View {
 	@ObservedObject var locationManager = LocationManager.shared
 	@State var place: IdentifiablePlace
