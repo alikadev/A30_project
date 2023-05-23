@@ -1,16 +1,16 @@
-# Projet du A30
+# A30 Project
 
-## Application `Swift` permettant la gestion de données sous forme de `tree` 
+## `Swift` application that can write tree data node
 
-Cette application permet la création de note structuré en `node`. Ces `node` contiennent un contenu et des `node` enfant.
+This application can create text data that are structured as `node`. These `nodes` contains a content and child-`node`.
 
-Pour le moment, l'application n'existe pas mais il y a un test technologique. Ce `TT` permet de récupèrer la localisation `GPS` de l'utilisateur, afficher une map, sauvegarder et charger des données depuis le disque.
+For the moment there's only technological tests. These `TTs` are in the `TTs` folder. There are 4 tests (3 small tests and a _super test_)
 
-# Run TT
+# Run TTs
 
 ``` shell
 # Clone the repository
 git clone https://github.com/alikadev/A30_project.git
 ```
 
-Ouvrez le projet dans `Xcode`, selectionnez le `device` et `Run` l'application.
+> Open the TT that you want to run with Xcode and run it with the simulator or your device.
