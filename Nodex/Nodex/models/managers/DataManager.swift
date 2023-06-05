@@ -7,20 +7,38 @@
 
 import Foundation
 
-class DataManager {
+class DataManager: ObservableObject {
 	static var shared = DataManager()
-	
-	private var root = Node("ROOT", childs: [
-		Node("Test1"),
-		Node("Test2")
+	static let DEFAULT = Node("", childs: [
+		Node("EX1", childs: [
+			Node("EX3", childs: [
+				Node("EX5")
+			]),
+			Node("EX4"),
+		]),
+		Node("EX2")
 	])
-	private let disk = DiskManager()
+	
 	private let NODES_KEY = "NODES"
+	@Published var root = DEFAULT
+	private let disk = DiskManager()
 	
 	private init()
 	{
 		if !loadFromDisk() {
-			print("Fail to load from disk...")
+			setRoot(root)
+		}
+	}
+	
+	func debugNode(_ node: Node, indent: Int = 0)
+	{
+		var spaces = ""
+		for _ in 0 ... indent {
+			spaces += "  "
+		}
+		print(spaces + "[" + node.name + "]")
+		for child in node.childs {
+			debugNode(child, indent: indent+1)
 		}
 	}
 	
@@ -30,16 +48,11 @@ class DataManager {
 			root = try disk.load(type: Node.self, key: NODES_KEY) as! Node
 			return true
 		} catch ApplicationError.diskError(let message) {
-			print(message)
+			print("loadFromDisk: "+message)
 		} catch {
-			print("Internal error!")
+			print("loadFromDisk: Unreachable")
 		}
 		return false
-	}
-	
-	func getRoot() -> Node
-	{
-		return root
 	}
 	
 	func setRoot(_ root: Node)
@@ -49,9 +62,9 @@ class DataManager {
 		do {
 			try disk.save(root, key: NODES_KEY)
 		} catch ApplicationError.diskError(let message) {
-			print(message)
+			print("setRoot: "+message)
 		} catch {
-			print("Internal error!")
+			print("setRoot: Unreachable")
 		}
 	}
 }

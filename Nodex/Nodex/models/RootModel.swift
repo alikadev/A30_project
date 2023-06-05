@@ -9,17 +9,12 @@ import Foundation
 
 class RootModel
 {
-	private var data = DataManager.shared
+	var data = DataManager.shared
 	
 	func loadNodes()
 	{
 		if !data.loadFromDisk() {
 			print("Fail to load from disk...")
 		}
-	}
-	
-	func getRootNode() -> Node
-	{
-		return data.getRoot()
 	}
 }

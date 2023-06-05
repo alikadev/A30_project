@@ -7,17 +7,24 @@
 
 import Foundation
 
-class RootCtrl
+class RootCtrl: ObservableObject
 {
-	var model = RootModel()
+	private var model = RootModel()
 	func loadNodes()
 	{
 		model.loadNodes()
 	}
 	
+	func reset()
+	{
+		DataManager.shared.setRoot(DataManager.DEFAULT)
+		print("Data are reseted")
+		DataManager.shared.debugNode(getRootNode())
+	}
+	
 	func getRootNode() -> Node
 	{
-		return model.getRootNode()
+		return model.data.root
 	}
 	
 }

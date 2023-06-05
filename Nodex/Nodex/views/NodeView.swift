@@ -1,5 +1,5 @@
 //
-//  RootView.swift
+//  NodeView.swift
 //  Nodex
 //
 //  Created by Alikadev on 05.06.23.
@@ -7,19 +7,17 @@
 
 import SwiftUI
 
-struct RootView: View {
-	var ctrl = RootCtrl()
+struct NodeView: View {
+	@Environment(\.presentationMode) var presentationMode
+	var ctrl: NodeCtrl
 	@ObservedObject var state = State.shared
 	
-	func btnCreateNode() {
-		
+	init(_ node: Node, parent: Node, path: String)
+	{
+		ctrl = NodeCtrl(node, parent: parent, path: path)
 	}
 	
-	func onLoad() {
-		ctrl.loadNodes()
-	}
-	
-	var body: some View {
+    var body: some View {
 		NavigationView
 		{
 			ZStack
@@ -28,11 +26,11 @@ struct RootView: View {
 				{
 					VStack
 					{
-						ForEach(ctrl.getRootNode().childs)
+						ForEach(ctrl.node.childs)
 						{ child in
 							NavigationLink
 							{
-								NodeView(child, parent: ctrl.getRootNode(), path: ctrl.getRootNode().name)
+								NodeView(child, parent: ctrl.node, path: ctrl.path+"/"+ctrl.node.name)
 							} label: {
 								HStack
 								{
@@ -77,35 +75,46 @@ struct RootView: View {
 				{
 					VStack
 					{
-						Text("Root")
+						Text(ctrl.node.name)
 							.font(.system(size: 20, weight: .semibold))
-							
+						Text(ctrl.path + "/" + ctrl.node.name)
+							.font(.system(size: 12, weight: .regular))
 					}
-					
 				}
 				ToolbarItem(placement: .confirmationAction)
 				{
 					Button
 					{
-						ctrl.reset()
+						ctrl.removeNode()
 						state.objectWillChange.send()
-						ctrl.objectWillChange.send()
+						presentationMode.wrappedValue.dismiss()
 					} label: {
-						Image(systemName: "exclamationmark.triangle")
-							.foregroundColor(.yellow)
+						Image(systemName: "trash")
+					}
+				}
+				ToolbarItem(placement: .navigation)
+				{
+					Button
+					{
+						presentationMode.wrappedValue.dismiss()
+					} label: {
+						Image(systemName: "chevron.backward")
 					}
 				}
 			}
 		}
-		.onAppear()
-		{
-			onLoad()
-		}
-	}
+		.navigationBarBackButtonHidden(true)
+    }
 }
 
-struct RootView_Previews: PreviewProvider {
-	static var previews: some View {
-		RootView()
+struct NodeView_Previews: PreviewProvider {
+    static var previews: some View {
+		NodeView(
+			Node("Example", childs: [
+				Node("Example1"),
+				Node("Example2")
+			]),
+			parent: Node(""),
+			path: "")
 	}
 }

@@ -18,6 +18,10 @@
 		EBB1760E2A2DCAEA00A00172 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB1760D2A2DCAEA00A00172 /* ApplicationError.swift */; };
 		EBB176102A2DDAC800A00172 /* RootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB1760F2A2DDAC800A00172 /* RootModel.swift */; };
 		EBB176122A2DDADD00A00172 /* RootCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB176112A2DDADD00A00172 /* RootCtrl.swift */; };
+		EBB176142A2DFAA600A00172 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB176132A2DFAA600A00172 /* NodeView.swift */; };
+		EBB176162A2DFC1300A00172 /* NodeCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB176152A2DFC1300A00172 /* NodeCtrl.swift */; };
+		EBB176182A2E094A00A00172 /* NodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB176172A2E094A00A00172 /* NodeModel.swift */; };
+		EBB1761A2A2E115100A00172 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB176192A2E115100A00172 /* StateManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		EBB1760D2A2DCAEA00A00172 /* ApplicationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
 		EBB1760F2A2DDAC800A00172 /* RootModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootModel.swift; sourceTree = "<group>"; };
 		EBB176112A2DDADD00A00172 /* RootCtrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCtrl.swift; sourceTree = "<group>"; };
+		EBB176132A2DFAA600A00172 /* NodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
+		EBB176152A2DFC1300A00172 /* NodeCtrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeCtrl.swift; sourceTree = "<group>"; };
+		EBB176172A2E094A00A00172 /* NodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeModel.swift; sourceTree = "<group>"; };
+		EBB176192A2E115100A00172 /* StateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				EBB176012A2DC6CD00A00172 /* RootView.swift */,
+				EBB176132A2DFAA600A00172 /* NodeView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -96,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				EBB176112A2DDADD00A00172 /* RootCtrl.swift */,
+				EBB176152A2DFC1300A00172 /* NodeCtrl.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -105,6 +115,7 @@
 			children = (
 				EBB176032A2DC79800A00172 /* managers */,
 				EBB1760F2A2DDAC800A00172 /* RootModel.swift */,
+				EBB176172A2E094A00A00172 /* NodeModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -115,6 +126,7 @@
 				EBB176042A2DC7A600A00172 /* DataManager.swift */,
 				EBB176062A2DC7B100A00172 /* DiskManager.swift */,
 				EBB176082A2DC7BF00A00172 /* LocationManager.swift */,
+				EBB176192A2E115100A00172 /* StateManager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -200,8 +212,12 @@
 			files = (
 				EBB175F12A2DC5FF00A00172 /* Nodex.swift in Sources */,
 				EBB176052A2DC7A600A00172 /* DataManager.swift in Sources */,
+				EBB176162A2DFC1300A00172 /* NodeCtrl.swift in Sources */,
 				EBB176092A2DC7BF00A00172 /* LocationManager.swift in Sources */,
 				EBB1760C2A2DC7FE00A00172 /* Node.swift in Sources */,
+				EBB1761A2A2E115100A00172 /* StateManager.swift in Sources */,
+				EBB176182A2E094A00A00172 /* NodeModel.swift in Sources */,
+				EBB176142A2DFAA600A00172 /* NodeView.swift in Sources */,
 				EBB1760E2A2DCAEA00A00172 /* ApplicationError.swift in Sources */,
 				EBB176072A2DC7B100A00172 /* DiskManager.swift in Sources */,
 				EBB176122A2DDADD00A00172 /* RootCtrl.swift in Sources */,

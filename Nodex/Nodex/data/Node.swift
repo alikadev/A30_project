@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-class Node : Encodable, Decodable, Identifiable
+class Node : Codable, Identifiable
 {
 	final var name: String
 	var content: String?
@@ -27,4 +27,6 @@ class Node : Encodable, Decodable, Identifiable
 		self.lat = coord?.coordinate.latitude
 		self.childs = childs
 	}
+	
+	
 }
