@@ -7,11 +7,18 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
-class EditCtrl
+class EditCtrl: ObservableObject
 {
 	var parent: Node
 	let model = EditModel()
+	@Published var region = MKCoordinateRegion(
+		center: CLLocationCoordinate2D(),
+		span: MKCoordinateSpan(
+			latitudeDelta: 0.5,
+			longitudeDelta: 0.5))
+	
 	init(_ parent: Node) {
 		self.parent = parent
 	}
@@ -30,6 +37,11 @@ class EditCtrl
 		model.replaceNode(parent: parent, node: n)
 		model.sortChilds(parent)
 		model.save()
-		
 	}
+	
+	func getLocation() -> CLLocation
+	{
+		return model.getLocation()
+	}
+	
 }

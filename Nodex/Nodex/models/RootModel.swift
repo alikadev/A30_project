@@ -15,4 +15,8 @@ class RootModel: Model
 			print("Fail to load nodes from disk...")
 		}
 	}
+	func requestLocation()
+	{
+		LocationManager.shared.requestLocation()
+	}
 }

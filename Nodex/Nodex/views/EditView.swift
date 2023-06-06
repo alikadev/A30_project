@@ -11,7 +11,7 @@ import MapKit
 struct EditView: View {
 	@Environment(\.presentationMode) var presentationMode
 	@ObservedObject var state = StateManager.shared
-	var ctrl: EditCtrl
+	@ObservedObject var ctrl: EditCtrl
 	
 	@State var name = String()
 	@State var content = String()
@@ -30,10 +30,36 @@ struct EditView: View {
 			{
 				HStack
 				{
-					Text("Name")
+					Text("Name:")
 					TextField("Node name", text: $name)
 				}
-				Text("Content")
+				ZStack
+				{
+					Map(coordinateRegion: $ctrl.region)
+					VStack
+					{
+						Spacer()
+						HStack
+						{
+							Spacer()
+							NavigationLink
+							{
+								EmptyView()
+							} label: {
+								Text("Modify")
+									.padding()
+									.bold()
+									.background(Capsule()
+										.foregroundColor(Color(.secondarySystemBackground)))
+							}
+						}
+					}
+				}
+				HStack
+				{
+					Text("Content:")
+					Spacer()
+				}
 				TextEditor(text: $content)
 					.shadow(radius: 1)
 				HStack
@@ -96,6 +122,10 @@ struct EditView: View {
 				Text("Node name only support alphanumeric")
 			}
 		)
+		.onAppear()
+		{
+			ctrl.region.center = ctrl.getLocation().coordinate
+		}
     }
 }
 

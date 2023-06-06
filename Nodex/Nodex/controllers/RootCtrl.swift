@@ -25,4 +25,9 @@ class RootCtrl: ObservableObject
 		model.save()
 	}
 	
+	func requestLocation()
+	{
+		model.requestLocation()
+	}
+	
 }

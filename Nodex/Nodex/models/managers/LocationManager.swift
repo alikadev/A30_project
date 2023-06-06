@@ -14,9 +14,10 @@ import CoreLocation
 class LocationManager: NSObject, ObservableObject
 {
 	static let shared = LocationManager() // Ceci permet de créer une sorte de Singleton
+	static let DEFAULT = CLLocation(latitude: 37.334722, longitude: -122.008889)
 	
 	private let manager = CLLocationManager()
-	@Published var userLocation: CLLocation?
+	@Published var userLocation: CLLocation = DEFAULT
 	
 	/*
 	 Le constructeur

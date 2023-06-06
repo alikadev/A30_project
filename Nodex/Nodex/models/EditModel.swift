@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class EditModel: Model
 {
@@ -13,5 +14,10 @@ class EditModel: Model
 	{
 		parent.childs = parent.childs.filter({$0.name != node.name})
 		parent.childs.append(node)
+	}
+	
+	func getLocation() -> CLLocation
+	{
+		return LocationManager.shared.userLocation
 	}
 }

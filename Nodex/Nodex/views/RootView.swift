@@ -72,12 +72,13 @@ struct RootView: View {
 						Text("Root")
 							.font(.system(size: 20, weight: .semibold))
 					}
-					
 				}
 			}
 		}
 		.onAppear()
 		{
+			ctrl.requestLocation()
+			
 			ctrl.loadNodes()
 			state.objectWillChange.send()
 		}
