@@ -7,7 +7,7 @@
 
 import Foundation
 
-class State: ObservableObject
+class StateManager: ObservableObject
 {
-	static var shared = State()
+	static var shared = StateManager()
 }

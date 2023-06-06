@@ -15,16 +15,14 @@ class RootCtrl: ObservableObject
 		model.loadNodes()
 	}
 	
-	func reset()
-	{
-		DataManager.shared.setRoot(DataManager.DEFAULT)
-		print("Data are reseted")
-		DataManager.shared.debugNode(getRootNode())
-	}
-	
 	func getRootNode() -> Node
 	{
-		return model.data.root
+		return model.getRoot()
+	}
+	
+	func save()
+	{
+		model.save()
 	}
 	
 }

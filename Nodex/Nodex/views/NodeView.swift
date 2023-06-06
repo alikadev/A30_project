@@ -10,7 +10,7 @@ import SwiftUI
 struct NodeView: View {
 	@Environment(\.presentationMode) var presentationMode
 	var ctrl: NodeCtrl
-	@ObservedObject var state = State.shared
+	@ObservedObject var state = StateManager.shared
 	
 	init(_ node: Node, parent: Node, path: String)
 	{
@@ -57,7 +57,7 @@ struct NodeView: View {
 						Spacer()
 						NavigationLink
 						{
-							EmptyView()
+							EditView(ctrl.node)
 						} label: {
 							Image(systemName: "plus")
 								.padding()
@@ -83,13 +83,23 @@ struct NodeView: View {
 				}
 				ToolbarItem(placement: .confirmationAction)
 				{
-					Button
+					Menu
 					{
-						ctrl.removeNode()
-						state.objectWillChange.send()
-						presentationMode.wrappedValue.dismiss()
+						Button
+						{
+							ctrl.removeNode()
+							state.objectWillChange.send()
+							presentationMode.wrappedValue.dismiss()
+						} label: {
+							HStack
+							{
+								Text("Remove this node")
+								Spacer()
+								Image(systemName: "trash")
+							}
+						}
 					} label: {
-						Image(systemName: "trash")
+						Image(systemName: "ellipsis")
 					}
 				}
 				ToolbarItem(placement: .navigation)

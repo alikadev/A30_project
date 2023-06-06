@@ -9,15 +9,7 @@ import SwiftUI
 
 struct RootView: View {
 	var ctrl = RootCtrl()
-	@ObservedObject var state = State.shared
-	
-	func btnCreateNode() {
-		
-	}
-	
-	func onLoad() {
-		ctrl.loadNodes()
-	}
+	@ObservedObject var state = StateManager.shared
 	
 	var body: some View {
 		NavigationView
@@ -59,7 +51,7 @@ struct RootView: View {
 						Spacer()
 						NavigationLink
 						{
-							EmptyView()
+							EditView(ctrl.getRootNode())
 						} label: {
 							Image(systemName: "plus")
 								.padding()
@@ -79,27 +71,19 @@ struct RootView: View {
 					{
 						Text("Root")
 							.font(.system(size: 20, weight: .semibold))
-							
 					}
 					
-				}
-				ToolbarItem(placement: .confirmationAction)
-				{
-					Button
-					{
-						ctrl.reset()
-						state.objectWillChange.send()
-						ctrl.objectWillChange.send()
-					} label: {
-						Image(systemName: "exclamationmark.triangle")
-							.foregroundColor(.yellow)
-					}
 				}
 			}
 		}
 		.onAppear()
 		{
-			onLoad()
+			ctrl.loadNodes()
+			state.objectWillChange.send()
+		}
+		.onDisappear()
+		{
+			ctrl.save()
 		}
 	}
 }

@@ -21,6 +21,6 @@ class NodeCtrl: RootCtrl {
 	
 	func removeNode() {
 		wrk.removeChildNode(node: parent, node.name)
-		DataManager.shared.debugNode(wrk.data.root)
+		wrk.save()
 	}
 }

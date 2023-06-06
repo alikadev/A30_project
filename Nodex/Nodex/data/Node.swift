@@ -28,5 +28,15 @@ class Node : Codable, Identifiable
 		self.childs = childs
 	}
 	
-	
+	init(node: Node)
+	{
+		self.name = node.name
+		self.content = node.content
+		self.lon = node.lon
+		self.lat = node.lat
+		childs = []
+		for child in node.childs {
+			childs.append(Node(node: child))
+		}
+	}
 }

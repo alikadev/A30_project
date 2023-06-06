@@ -7,14 +7,12 @@
 
 import Foundation
 
-class RootModel
+class RootModel: Model
 {
-	var data = DataManager.shared
-	
 	func loadNodes()
 	{
-		if !data.loadFromDisk() {
-			print("Fail to load from disk...")
+		if !DataManager.shared.loadFromDisk() {
+			print("Fail to load nodes from disk...")
 		}
 	}
 }

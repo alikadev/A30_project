@@ -7,20 +7,13 @@
 
 import Foundation
 
-class DataManager: ObservableObject {
+class DataManager: ObservableObject
+{
 	static var shared = DataManager()
-	static let DEFAULT = Node("", childs: [
-		Node("EX1", childs: [
-			Node("EX3", childs: [
-				Node("EX5")
-			]),
-			Node("EX4"),
-		]),
-		Node("EX2")
-	])
+	static let DEFAULT = Node("")
 	
 	private let NODES_KEY = "NODES"
-	@Published var root = DEFAULT
+	@Published var root = Node(node: DEFAULT)
 	private let disk = DiskManager()
 	
 	private init()

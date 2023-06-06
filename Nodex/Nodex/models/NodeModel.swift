@@ -7,11 +7,10 @@
 
 import Foundation
 
-class NodeModel
+class NodeModel: Model
 {
-	var data = DataManager.shared
-	
-	func removeChildNode(node: Node, _ name: String) {
+	func removeChildNode(node: Node, _ name: String)
+	{
 		node.childs = node.childs.filter({$0.name != name})
 		
 	}
