@@ -10,6 +10,7 @@ import SwiftUI
 struct RootView: View {
 	var ctrl = RootCtrl()
 	@ObservedObject var state = StateManager.shared
+	@State var editView = false
 	
 	var body: some View {
 		NavigationView
@@ -49,9 +50,9 @@ struct RootView: View {
 					HStack
 					{
 						Spacer()
-						NavigationLink
+						Button
 						{
-							EditView(ctrl.getRootNode())
+							editView.toggle()
 						} label: {
 							Image(systemName: "plus")
 								.padding()
@@ -62,6 +63,10 @@ struct RootView: View {
 						.padding()
 					}
 				}
+			}
+			.sheet(isPresented: $editView)
+			{
+				EditView(parent: ctrl.getRootNode())
 			}
 			.toolbar
 			{

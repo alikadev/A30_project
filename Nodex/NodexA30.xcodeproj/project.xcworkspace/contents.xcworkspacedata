@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Volumes/HOME/alikadev/code/A30-proj/Nodex/NodexA30.xcodeproj">
    </FileRef>
 </Workspace>

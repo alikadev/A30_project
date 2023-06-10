@@ -18,6 +18,6 @@ class EditModel: Model
 	
 	func getLocation() -> CLLocation
 	{
-		return LocationManager.shared.userLocation
+		return LocationManager.shared.location
 	}
 }

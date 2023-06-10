@@ -9,8 +9,11 @@ import SwiftUI
 
 struct NodeView: View {
 	@Environment(\.presentationMode) var presentationMode
-	var ctrl: NodeCtrl
 	@ObservedObject var state = StateManager.shared
+	var ctrl: NodeCtrl
+	@State var createChildNode = false
+	@State var editNode = false
+	@State var showNode = false
 	
 	init(_ node: Node, parent: Node, path: String)
 	{
@@ -49,25 +52,37 @@ struct NodeView: View {
 					}
 					.padding()
 				}
-				VStack
+				HStack
 				{
 					Spacer()
-					HStack
+					VStack
 					{
 						Spacer()
-						NavigationLink
+						Button
 						{
-							EditView(ctrl.node)
+							showNode.toggle()
 						} label: {
-							Image(systemName: "plus")
+							Image(systemName: "eye")
 								.padding()
 								.background(Capsule()
 									.foregroundColor(Color(.secondarySystemBackground))
 									.shadow(radius: 5))
 						}
-						.padding()
 					}
+					.padding()
 				}
+			}
+			.sheet(isPresented: $createChildNode)
+			{
+				EditView(parent: ctrl.node)
+			}
+			.sheet(isPresented: $editNode)
+			{
+				EditView(node: ctrl.node)
+			}
+			.sheet(isPresented: $showNode)
+			{
+				EmptyView()
 			}
 			.toolbar
 			{
@@ -87,15 +102,57 @@ struct NodeView: View {
 					{
 						Button
 						{
+							createChildNode.toggle()
+						} label: {
+							HStack
+							{
+								Text("Add Node")
+								Spacer()
+								Image(systemName: "plus")
+									.padding()
+									.background(Capsule()
+										.foregroundColor(Color(.secondarySystemBackground))
+										.shadow(radius: 5))
+							}
+						}
+						Button
+						{
+							showNode.toggle()
+						} label: {
+							HStack
+							{
+								Text("Show Node")
+								Spacer()
+								Image(systemName: "eye")
+									.padding()
+									.background(Capsule()
+										.foregroundColor(Color(.secondarySystemBackground))
+										.shadow(radius: 5))
+							}
+						}
+						Button
+						{
 							ctrl.removeNode()
 							state.objectWillChange.send()
 							presentationMode.wrappedValue.dismiss()
 						} label: {
 							HStack
 							{
-								Text("Remove this node")
+								Text("Remove Node")
 								Spacer()
 								Image(systemName: "trash")
+							}
+						}
+						Button
+						{
+							print("BEFORE",ctrl.node.name)
+							editNode.toggle()
+						} label: {
+							HStack
+							{
+								Text("Edit Node")
+								Spacer()
+								Image(systemName: "pencil")
 							}
 						}
 					} label: {
@@ -120,10 +177,12 @@ struct NodeView: View {
 struct NodeView_Previews: PreviewProvider {
     static var previews: some View {
 		NodeView(
-			Node("Example", childs: [
-				Node("Example1"),
-				Node("Example2")
-			]),
+			Node("Example",
+				 content: "Hey, this is a test!\nBe cool",
+				 childs: [
+					Node("Example1"),
+					Node("Example2")
+				 ]),
 			parent: Node(""),
 			path: "")
 	}

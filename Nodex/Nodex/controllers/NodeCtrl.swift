@@ -13,6 +13,7 @@ class NodeCtrl: RootCtrl {
 	var parent: Node
 	private var wrk = NodeModel()
 	
+	
 	init(_ node: Node, parent: Node, path: String) {
 		self.node = node
 		self.parent = parent

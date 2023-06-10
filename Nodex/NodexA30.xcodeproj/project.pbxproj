@@ -33,7 +33,7 @@
 		EB7FEC1C2A2E1EA300DFDD9E /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		EB7FEC1E2A2E2A6000DFDD9E /* StringExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtention.swift; sourceTree = "<group>"; };
 		EB7FEC202A2F08A400DFDD9E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		EBB175ED2A2DC5FF00A00172 /* Nodex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nodex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB175ED2A2DC5FF00A00172 /* NodexA30.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodexA30.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB175F02A2DC5FF00A00172 /* Nodex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nodex.swift; sourceTree = "<group>"; };
 		EBB175F42A2DC60000A00172 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBB175F72A2DC60000A00172 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 		EBB175EE2A2DC5FF00A00172 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EBB175ED2A2DC5FF00A00172 /* Nodex.app */,
+				EBB175ED2A2DC5FF00A00172 /* NodexA30.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,9 +158,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EBB175EC2A2DC5FF00A00172 /* Nodex */ = {
+		EBB175EC2A2DC5FF00A00172 /* NodexA30 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EBB175FB2A2DC60000A00172 /* Build configuration list for PBXNativeTarget "Nodex" */;
+			buildConfigurationList = EBB175FB2A2DC60000A00172 /* Build configuration list for PBXNativeTarget "NodexA30" */;
 			buildPhases = (
 				EBB175E92A2DC5FF00A00172 /* Sources */,
 				EBB175EA2A2DC5FF00A00172 /* Frameworks */,
@@ -170,9 +170,9 @@
 			);
 			dependencies = (
 			);
-			name = Nodex;
+			name = NodexA30;
 			productName = Nodex;
-			productReference = EBB175ED2A2DC5FF00A00172 /* Nodex.app */;
+			productReference = EBB175ED2A2DC5FF00A00172 /* NodexA30.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -190,7 +190,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EBB175E82A2DC5FF00A00172 /* Build configuration list for PBXProject "Nodex" */;
+			buildConfigurationList = EBB175E82A2DC5FF00A00172 /* Build configuration list for PBXProject "NodexA30" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -203,7 +203,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EBB175EC2A2DC5FF00A00172 /* Nodex */,
+				EBB175EC2A2DC5FF00A00172 /* NodexA30 */,
 			);
 		};
 /* End PBXProject section */
@@ -426,7 +426,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EBB175E82A2DC5FF00A00172 /* Build configuration list for PBXProject "Nodex" */ = {
+		EBB175E82A2DC5FF00A00172 /* Build configuration list for PBXProject "NodexA30" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBB175F92A2DC60000A00172 /* Debug */,
@@ -435,7 +435,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EBB175FB2A2DC60000A00172 /* Build configuration list for PBXNativeTarget "Nodex" */ = {
+		EBB175FB2A2DC60000A00172 /* Build configuration list for PBXNativeTarget "NodexA30" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBB175FC2A2DC60000A00172 /* Debug */,

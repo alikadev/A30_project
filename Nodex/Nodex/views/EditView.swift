@@ -13,14 +13,24 @@ struct EditView: View {
 	@ObservedObject var state = StateManager.shared
 	@ObservedObject var ctrl: EditCtrl
 	
-	@State var name = String()
-	@State var content = String()
+	@State var name: String
+	@State var content: String
 	
 	@State var popNameNotAlphaNum = false
 	
-	init(_ parent: Node)
+	init(parent: Node)
 	{
-		ctrl = EditCtrl(parent)
+		ctrl = EditCtrl(parent: parent)
+		_name = State(initialValue: "")
+		_content = State(initialValue: "")
+	}
+	
+	init(node: Node)
+	{
+		ctrl = EditCtrl(node: node)
+		_name = State(initialValue: node.name)
+		_content = State(initialValue: node.content ?? "")
+		print("On init", "\""+node.name+"\"","\""+name+"\"")
 	}
 	
     var body: some View {
@@ -33,28 +43,9 @@ struct EditView: View {
 					Text("Name:")
 					TextField("Node name", text: $name)
 				}
-				ZStack
-				{
-					Map(coordinateRegion: $ctrl.region)
-					VStack
-					{
-						Spacer()
-						HStack
-						{
-							Spacer()
-							NavigationLink
-							{
-								EmptyView()
-							} label: {
-								Text("Modify")
-									.padding()
-									.bold()
-									.background(Capsule()
-										.foregroundColor(Color(.secondarySystemBackground)))
-							}
-						}
-					}
-				}
+				
+				Map(coordinateRegion: $ctrl.region)
+				
 				HStack
 				{
 					Text("Content:")
@@ -100,15 +91,6 @@ struct EditView: View {
 						//	.font(.system(size: 12, weight: .regular))
 					}
 				}
-				ToolbarItem(placement: .navigation)
-				{
-					Button
-					{
-						presentationMode.wrappedValue.dismiss()
-					} label: {
-						Image(systemName: "chevron.backward")
-					}
-				}
 			}
 		}
 		.navigationBarBackButtonHidden(true)
@@ -122,15 +104,11 @@ struct EditView: View {
 				Text("Node name only support alphanumeric")
 			}
 		)
-		.onAppear()
-		{
-			ctrl.region.center = ctrl.getLocation().coordinate
-		}
     }
 }
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-		EditView(Node("OK"))
+		EditView(parent: Node("OK"))
     }
 }
