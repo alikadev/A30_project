@@ -35,19 +35,28 @@ class EditCtrl: ObservableObject
 		region.center = model.getLocation().coordinate
 	}
 	
+	func getPlaces() -> [Node]
+	{
+		return [Node("" ,coord: CLLocation(
+			latitude: region.center.latitude,
+			longitude: region.center.longitude))]
+	}
+	
 	func createNode(_ name: String,
 					content: String? = nil)
 	{
 		if parent != nil
 		{
-			let n = Node(name, content: content, coord: model.getLocation())
+			let n = Node(name, content: content, coord: CLLocation(
+				latitude: region.center.latitude,
+				longitude: region.center.longitude))
 			model.replaceNode(parent: parent!, node: n)
 			model.sortChilds(parent!)
 		} else if node != nil {
 			node?.name = name
 			node?.content = content
-			node?.lon = model.getLocation().coordinate.longitude
-			node?.lat = model.getLocation().coordinate.latitude
+			node?.lon = region.center.longitude
+			node?.lat = region.center.latitude
 		}
 		model.save()
 	}

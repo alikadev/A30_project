@@ -10,7 +10,9 @@ import SwiftUI
 struct RootView: View {
 	var ctrl = RootCtrl()
 	@ObservedObject var state = StateManager.shared
-	@State var editView = false
+	
+	@State var createNode = false
+	@State var showNode = false
 	
 	var body: some View {
 		NavigationView
@@ -44,29 +46,33 @@ struct RootView: View {
 					}
 					.padding()
 				}
-				VStack
+				HStack
 				{
 					Spacer()
-					HStack
+					VStack
 					{
 						Spacer()
 						Button
 						{
-							editView.toggle()
+							createNode.toggle()
 						} label: {
 							Image(systemName: "plus")
 								.padding()
-								.background(Capsule()
+								.background(Circle()
 									.foregroundColor(Color(.secondarySystemBackground))
 									.shadow(radius: 5))
 						}
-						.padding()
 					}
+					.padding()
 				}
 			}
-			.sheet(isPresented: $editView)
+			.sheet(isPresented: $createNode)
 			{
 				EditView(parent: ctrl.getRootNode())
+			}
+			.sheet(isPresented: $showNode)
+			{
+				ShowView(node: ctrl.getRootNode())
 			}
 			.toolbar
 			{
@@ -76,6 +82,29 @@ struct RootView: View {
 					{
 						Text("Root")
 							.font(.system(size: 20, weight: .semibold))
+					}
+				}
+				ToolbarItem(placement: .confirmationAction)
+				{
+					Menu
+					{
+						Button
+						{
+							createNode.toggle()
+						} label: {
+							HStack
+							{
+								Text("Add Node")
+								Spacer()
+								Image(systemName: "plus")
+									.padding()
+									.background(Capsule()
+										.foregroundColor(Color(.secondarySystemBackground))
+										.shadow(radius: 5))
+							}
+						}
+					} label: {
+						Image(systemName: "ellipsis")
 					}
 				}
 			}

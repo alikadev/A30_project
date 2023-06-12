@@ -33,67 +33,60 @@ struct EditView: View {
 		print("On init", "\""+node.name+"\"","\""+name+"\"")
 	}
 	
-    var body: some View {
-		NavigationView
+	var body: some View {
+		VStack
 		{
-			VStack
+			Text(name.isEmpty ? "Node Name" : name)
+				.font(.system(size: 20, weight: .semibold))
+				.padding()
+			HStack
 			{
-				HStack
-				{
-					Text("Name:")
-					TextField("Node name", text: $name)
-				}
-				
-				Map(coordinateRegion: $ctrl.region)
-				
-				HStack
-				{
-					Text("Content:")
-					Spacer()
-				}
-				TextEditor(text: $content)
-					.shadow(radius: 1)
-				HStack
-				{
-					Button
-					{
-						if !name.isAlphanumeric
-						{
-							popNameNotAlphaNum.toggle()
-							return
-						}
-						
-						ctrl.createNode(name, content: content)
-						state.objectWillChange.send()
-						presentationMode.wrappedValue.dismiss()
-					} label: {
-						Text("Save")
-							.bold()
-							.padding()
-							.foregroundColor(.white)
-							.background(Capsule()
-								.foregroundColor(Color(.systemBlue)))
-					}
-					Spacer()
-				}
+				Text("Name:")
+				TextField("Node name", text: $name)
 			}
-			.textFieldStyle(RoundedBorderTextFieldStyle())
-			.padding()
-			.toolbar
+			
+			Map(coordinateRegion: $ctrl.region,
+				annotationItems: ctrl.getPlaces())
+			{ pos in
+				MapMarker(coordinate: CLLocationCoordinate2D(
+					latitude: pos.lat!,
+					longitude: pos.lon!))
+			}
+			
+			HStack
 			{
-				ToolbarItem(placement: .principal)
+				Text("Content:")
+				Spacer()
+			}
+			TextEditor(text: $content)
+				.shadow(radius: 1)
+			
+			HStack
+			{
+				Button
 				{
-					VStack
+					if !name.isAlphanumeric
 					{
-						Text(name.isEmpty ? "Node Name" : name)
-							.font(.system(size: 20, weight: .semibold))
-						//Text(ctrl.path + "/" + ctrl.node.name)
-						//	.font(.system(size: 12, weight: .regular))
+						popNameNotAlphaNum.toggle()
+						return
 					}
+					
+					ctrl.createNode(name, content: content)
+					state.objectWillChange.send()
+					presentationMode.wrappedValue.dismiss()
+				} label: {
+					Text("Save")
+						.bold()
+						.padding()
+						.foregroundColor(.white)
+						.background(Capsule()
+							.foregroundColor(Color(.systemBlue)))
 				}
+				Spacer()
 			}
 		}
-		.navigationBarBackButtonHidden(true)
+		.textFieldStyle(RoundedBorderTextFieldStyle())
+		.padding()
 		.alert(
 			"Bad name for Node",
 			isPresented: $popNameNotAlphaNum,
@@ -104,11 +97,13 @@ struct EditView: View {
 				Text("Node name only support alphanumeric")
 			}
 		)
-    }
+		
+	}
+	
 }
 
 struct EditView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		EditView(parent: Node("OK"))
-    }
+	}
 }

@@ -64,7 +64,17 @@ struct NodeView: View {
 						} label: {
 							Image(systemName: "eye")
 								.padding()
-								.background(Capsule()
+								.background(Circle()
+									.foregroundColor(Color(.secondarySystemBackground))
+									.shadow(radius: 5))
+						}
+						Button
+						{
+							createChildNode.toggle()
+						} label: {
+							Image(systemName: "plus")
+								.padding()
+								.background(Circle()
 									.foregroundColor(Color(.secondarySystemBackground))
 									.shadow(radius: 5))
 						}
@@ -82,7 +92,7 @@ struct NodeView: View {
 			}
 			.sheet(isPresented: $showNode)
 			{
-				EmptyView()
+				ShowView(node: ctrl.node)
 			}
 			.toolbar
 			{
